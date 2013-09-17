@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="TwilioS2SH"
+  id="myeclipse.1363765243257"
+  context-root="/"
+  j2ee-spec="6.0"
+  archive="TwilioS2SH.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
