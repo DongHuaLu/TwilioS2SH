@@ -9,4 +9,8 @@ public interface ContactDao extends BaseDao {
 
 	List<Contact> findAllContactsByUser(User currentUser, String sSearch);
 
+	boolean deleteContact(int contactId, User currentUser);
+
+	List<Contact> findContactsByPhoneNumber(String phoneNumber);
+
 }

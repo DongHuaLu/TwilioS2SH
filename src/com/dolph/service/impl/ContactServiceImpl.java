@@ -45,4 +45,10 @@ public class ContactServiceImpl implements ContactService {
 		contactDao.update(contact);
 
 	}
+
+	@Override
+	public boolean deleteContact(int contactId, User currentUser) {
+		return contactDao.deleteContact(contactId,currentUser);
+		
+	}
 }

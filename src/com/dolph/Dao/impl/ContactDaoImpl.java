@@ -19,4 +19,23 @@ public class ContactDaoImpl extends BaseDaoImpl implements ContactDao {
 				.setParameter(1, "%" + sSearch + "%").list();
 	}
 
+	@Override
+	public boolean deleteContact(int contactId, User currentUser) {
+		String hql = "delete from Contact c where c.id=? and c.owner=?";
+		try {
+			getSession().createQuery(hql).setParameter(0, contactId)
+					.setParameter(1, currentUser).executeUpdate();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	public List<Contact> findContactsByPhoneNumber(String phoneNumber) {
+		String hql = "select c from Contact c where c.number=?";
+		return getSession().createQuery(hql).setParameter(0, phoneNumber)
+				.list();
+	}
 }

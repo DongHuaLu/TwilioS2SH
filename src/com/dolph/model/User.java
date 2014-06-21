@@ -11,6 +11,9 @@ public class User {
 	private String twilio_number;
 	private boolean status;
 	private String deviceId;
+	private Set<Contact> contacts = new HashSet<Contact>();
+	private Set<Record> records = new HashSet<Record>();
+
 	public String getDeviceId() {
 		return deviceId;
 	}
@@ -19,7 +22,13 @@ public class User {
 		this.deviceId = deviceId;
 	}
 
-	private Set<Contact> contacts = new HashSet<Contact>();
+	public Set<Record> getRecords() {
+		return records;
+	}
+
+	public void setRecords(Set<Record> records) {
+		this.records = records;
+	}
 
 	public Set<Contact> getContacts() {
 		return contacts;

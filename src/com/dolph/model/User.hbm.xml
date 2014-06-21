@@ -13,8 +13,12 @@
 		<property name="status" />
 		<property name="deviceId" />
 		<set name="contacts" inverse="true" lazy="extra" cascade="delete">
-			<key column="userId" />
+			<key column="ownerid" />
 			<one-to-many class="Contact" />
+		</set>
+		<set name="records" inverse="true" lazy="extra" cascade="delete">
+			<key column="ownerid" />
+			<one-to-many class="Record" />
 		</set>
 	</class>
 

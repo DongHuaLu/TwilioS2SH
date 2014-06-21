@@ -37,16 +37,16 @@ public class TwilioAuth extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		TwilioCapability capability = new TwilioCapability(ACCOUNT_SID,
-				AUTH_TOKEN);
-		capability.allowClientIncoming(clientName);
-		capability.allowClientOutgoing(appSid);
-		try {
-			String token = capability.generateToken();
-			response.getOutputStream().write(token.getBytes());
-		} catch (DomainException e) {
-			e.printStackTrace();
-		}
+		// TwilioCapability capability = new TwilioCapability(ACCOUNT_SID,
+		// AUTH_TOKEN);
+		// capability.allowClientIncoming(clientName);
+		// capability.allowClientOutgoing(appSid);
+		// try {
+		// String token = capability.generateToken();
+		// response.getOutputStream().write(token.getBytes());
+		// } catch (DomainException e) {
+		// e.printStackTrace();
+		// }
 
 	}
 

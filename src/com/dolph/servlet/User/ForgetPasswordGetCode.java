@@ -1,9 +1,7 @@
-package com.dolph.servlet;
+package com.dolph.servlet.User;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,23 +12,20 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.dolph.model.Contact;
-import com.dolph.model.User;
-import com.dolph.service.ContactService;
-import com.dolph.utils.JSONUtils;
-import com.google.gson.Gson;
+import com.dolph.service.CodeService;
+import com.dolph.service.impl.CodeServiceImpl;
 
 /**
- * Servlet implementation class AddContact
+ * Servlet implementation class ForgetPasswordGetCode
  */
-@WebServlet("/loginfilter/ContactList")
-public class ContactList extends HttpServlet {
+@WebServlet("/ForgetPasswordGetCode")
+public class ForgetPasswordGetCode extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ContactList() {
+	public ForgetPasswordGetCode() {
 		super();
 	}
 
@@ -42,21 +37,23 @@ public class ContactList extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		WebApplicationContext wac = WebApplicationContextUtils
 				.getRequiredWebApplicationContext(getServletContext());
-		ContactService contactService = (ContactService) wac
-				.getBean("contactService");
+		CodeService codeService = (CodeService) wac.getBean("codeService");
 
-		String sSearch = request.getParameter("sSearch");
-
-		Map<String, Object> result = new HashMap<String, Object>();
-
-		// request.getSession().setMaxInactiveInterval(1);
-		User currentUser = (User) request.getSession().getAttribute("user");
-		List<Contact> contacts = contactService.findAllContactsByUser(
-				currentUser, sSearch);
-		result.put("state", "ok");
-		result.put("response", JSONUtils.listToJson(contacts));
-		response.getOutputStream().write(
-				JSONUtils.toJSON(result).getBytes("utf-8"));
+		String mobile_phone = request.getParameter("mobile_phone");
+		if (mobile_phone != null && !"".equals(mobile_phone)) {
+			boolean isRegister = codeService.isRegister(mobile_phone);
+			Random random = new Random();
+			String newCode = (Math.abs(random.nextInt(89999999)) + 10000000)
+					+ "";
+			if (isRegister) {
+				codeService.insertOrUpdateCode(newCode, mobile_phone);
+				response.getOutputStream().write(newCode.getBytes());
+			} else {
+				response.getOutputStream().write("电话号码未注册".getBytes("utf-8"));
+			}
+		} else {
+			response.getOutputStream().write("电话不能为空".getBytes("utf-8"));
+		}
 	}
 
 	/**

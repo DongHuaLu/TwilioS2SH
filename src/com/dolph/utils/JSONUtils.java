@@ -19,13 +19,24 @@ public class JSONUtils {
 		return null;
 	}
 
-
 	public static String listToJson(List list) {
 		StringBuffer sb = new StringBuffer();
 		sb.append("[");
 		for (Object o : list) {
-			ContactVo vo=new ContactVo((Contact) o);
+			ContactVo vo = new ContactVo((Contact) o);
 			sb.append(toJSON(vo) + ",");
+		}
+		String str = sb.substring(0, sb.length() - 1);
+		str = str + "]";
+		return str;
+	}
+
+	public static String listToJson2(List list) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("[");
+		for (Object o : list) {
+			sb.append(o.toString());
+			sb.append(",");
 		}
 		String str = sb.substring(0, sb.length() - 1);
 		str = str + "]";

@@ -11,17 +11,7 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>ContactList</servlet-name>
-    <servlet-class>com.dolph.servlet.ContactList</servlet-class>
-  </servlet>
 
-  <servlet-mapping>
-    <servlet-name>ContactList</servlet-name>
-    <url-pattern>/servlet/ContactList</url-pattern>
-  </servlet-mapping>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:beans.xml</param-value>

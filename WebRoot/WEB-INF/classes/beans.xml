@@ -41,6 +41,7 @@
 				<value>com/dolph/model/User.hbm.xml</value>
 				<value>com/dolph/model/Contact.hbm.xml</value>
 				<value>com/dolph/model/Validation.hbm.xml</value>
+				<value>com/dolph/model/Record.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -51,6 +52,9 @@
 				<!-- <prop key="current_session_context_class">thread</prop> 不要配这个 -->
 				<prop key="javax.persistence.validation.mode">none</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="connection.useUnicode">true</prop>
+				<prop key="connection.characterEncoding">UTF-8</prop>
+
 			</props>
 		</property>
 	</bean>

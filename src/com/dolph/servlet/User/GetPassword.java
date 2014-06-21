@@ -1,4 +1,4 @@
-package com.dolph.servlet;
+package com.dolph.servlet.User;
 
 import java.io.IOException;
 

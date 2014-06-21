@@ -13,4 +13,6 @@ public interface ContactService {
 
 	public void updateContact(int contactId, String contactName,
 			String address, String contactNumber, User currentUser);
+
+	public boolean deleteContact(int contactId, User currentUser);
 }
